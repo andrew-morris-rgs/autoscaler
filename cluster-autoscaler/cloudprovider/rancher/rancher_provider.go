@@ -82,6 +82,9 @@ func newRancherCloudProvider(cloudConfig string, resourceLimiter *cloudprovider.
 		Host:        config.URL,
 		APIPath:     rancherLocalClusterPath,
 		BearerToken: config.Token,
+		TLSClientConfig: rest.TLSClientConfig{
+                  Insecure: config.TLSInsecureSkipVerify,
+	        },
 	}
 
 	client, err := dynamic.NewForConfig(restConfig)

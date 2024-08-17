@@ -29,7 +29,9 @@ type cloudConfig struct {
 	ClusterName       string `yaml:"clusterName"`
 	ClusterNamespace  string `yaml:"clusterNamespace"`
 	ClusterAPIVersion string `yaml:"clusterAPIVersion"`
+	TLSInsecureSkipVerify bool `default:"false" yaml:"TLSInsecureSkipVerify"`
 }
+
 
 func newConfig(file string) (*cloudConfig, error) {
 	b, err := os.ReadFile(file)
