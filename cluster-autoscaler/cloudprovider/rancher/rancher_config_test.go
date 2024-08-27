@@ -39,4 +39,36 @@ func TestNewConfig(t *testing.T) {
 	if len(cfg.ClusterNamespace) == 0 {
 		t.Fatal("expected cluster namespace to be set")
 	}
+
+	if len(cfg.TLSInsecureSkipVerify) == 0 {
+		t.Fatal("expected TLSInsecureSkipVerify to be set")
+	}
+
+	if len(cfg.RancherServerCARootFilePath) == 0 {
+		t.Fatal("expected ClusterCARootFilePath to be set")
+	}
+
+	if len(cfg.ClusterAutoscaleServiceCertFile) == 0 {
+		t.Fatal("expected ClusterAutoscaleServiceCertFile to be set")
+	}
+
+	if len(cfg.ClusterAutoscaleServiceKeyFile) == 0 {
+		t.Fatal("expected ClusterAutoscaleServiceKeyFile to be set")
+	}
+
+	if len(cfg.ClusterAutoscaleServiceCertData) == 0 {
+		t.Fatal("expected ClusterAutoscaleServiceCertData to be set")
+	}
+
+	if len(cfg.ClusterAutoscaleServiceKeyData) == 0 {
+		t.Fatal("expected ClusterAutoscaleServiceKeyData to be set")
+	}
+
+	if len(cfg.RancherServerCARoot) == 0 {
+		t.Fatal("expected RancherServerCARoot to be set")
+	}
+
+	if len(cfg.NextProtos) == 0 {
+		t.Fatal("expected NextProtos to be set")
+	}
 }

@@ -74,6 +74,7 @@ func BuildRancher(opts config.AutoscalingOptions, _ cloudprovider.NodeGroupDisco
 
 func newRancherCloudProvider(cloudConfig string, resourceLimiter *cloudprovider.ResourceLimiter) (*RancherCloudProvider, error) {
 	config, err := newConfig(cloudConfig)
+
 	if err != nil {
 		return nil, fmt.Errorf("unable to create cloud config: %w", err)
 	}
@@ -83,8 +84,27 @@ func newRancherCloudProvider(cloudConfig string, resourceLimiter *cloudprovider.
 		APIPath:     rancherLocalClusterPath,
 		BearerToken: config.Token,
 		TLSClientConfig: rest.TLSClientConfig{
-                  Insecure: config.TLSInsecureSkipVerify,
-	        },
+			Insecure:   config.TLSInsecureSkipVerify,
+			ServerName: config.RancherTLSServerName,
+			CertFile:   config.ClusterAutoscaleServiceCertFile,
+			KeyFile:    config.ClusterAutoscaleServiceKeyFile,
+			CAFile:     config.RancherServerCARootFile,
+			CertData:   config.ClusterAutoscaleServiceCertData,
+			KeyData:    config.ClusterAutoscaleServiceKeyData,
+			CAData:     config.RancherServerCARoot,
+			NextProtos: config.NextProtos,
+		},
+	}
+
+	//Loads any ???
+	if restConfig.TLSClientConfig.CertFile != "" {
+		if restConfig.TLSClientConfig.KeyFile != "" {
+			if restConfig.TLSClientConfig.CAFile != "" {
+				if err := rest.LoadTLSFiles(restConfig); err != nil {
+					return nil, fmt.Errorf("unable to load TLS cert file: %s", err)
+				}
+			}
+		}
 	}
 
 	client, err := dynamic.NewForConfig(restConfig)

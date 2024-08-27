@@ -1,9 +1,110 @@
 # rancher server credentials
-url: https://rancher.example.org
+url: "https://rancher.example.org"
 token: <rancher token>
 # name and namespace of the clusters.provisioning.cattle.io resource on the
 # rancher server
-clusterName: my-cluster
-clusterNamespace: fleet-default
-# optional, will be auto-discovered if not specified
-#clusterAPIVersion: v1alpha4
+clusterName: "my-cluster"
+clusterNamespace: "fleet-default"
+# Optional # string for clusterAPIVersion will be auto-discovered if not specified
+clusterAPIVersion: "v1alpha4"
+# Optional # bool value on whether to skip TLS verifcation of the rancher server
+TLSInsecureSkipVerify:  false
+# Optional # string for SNI passed to rancher server and is used in the client to check server
+# certificates against. If ServerName is empty, the hostname used to contact the
+# server is used.
+RancherTLSServerName: "rancher.example.org"
+# Optional # file path a Certificate Authority root of trust for the rancher server
+RancherServerCARootFile: "./rancher-ca-root/ca.crt"
+# Optional # path to client (the autoscaler service) pki certificate
+ClusterAutoscaleServiceCertFile: "./custom-pki/cert.crt"
+# Optional # path to client (the autoscaler service) pki key
+ClusterAutoscaleServiceKeyFile: "./custom-pki/cert.key"
+# Optional # PEM-encoded bytes of client (the autoscaler service) pki certificate
+# ClusterAutoscaleServiceCertData takes precedence over ClusterAutoscaleServiceCertFile
+ClusterAutoscaleServiceCertData: |
+  -----BEGIN CERTIFICATE-----
+  MIIDljCCAn6gAwIBAgIUDfhw/La51cZsfQY1gwmKtM1prMIwDQYJKoZIhvcNAQEL
+  BQAwYzELMAkGA1UEBhMCVVMxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM
+  GEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTcmFuY2hlci5leGFt
+  cGxlLmNvbTAeFw0yNDA4MjYxNDQ3MjNaFw0yNTA4MjYxNDQ3MjNaMGMxCzAJBgNV
+  BAYTAlVTMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBX
+  aWRnaXRzIFB0eSBMdGQxHDAaBgNVBAMME3JhbmNoZXIuZXhhbXBsZS5jb20wggEi
+  MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDAd2mFChWxWl71tfwFcMOkGD+f
+  s/r+t2PWKa7HeBXxazprFS2pwOdkY9k+AuiRCZH7eO0sYA+L3kN/yMlT1PZILYZv
+  eHP4vJt2qb5cwEFFKRw0UvseYq6nsM0xO2iKBkwl1Hg0arl76l76k4W7qAuv6WeI
+  dVweZ4Mb5ezH5H1cUb3d4haUWyw6fJWPTrO80HRQaF8wYzpQ7NryZLB2LMoYZ86N
+  qr5lmrloyPjweNwr77/23lXowIFcEnSRv7ivnOSqrce3Ns25CeMTvdrt9I33I2I4
+  8huAnfZ3pCLEp9IPAkBruI4c/s3ssdzDfi8W5i1Kw8fWmdPvpQ7IEmgmeGmlAgMB
+  AAGjQjBAMB0GA1UdDgQWBBQmqBM2S5wQ/q3nFycuNC0YtSpmNTAfBgNVHSMEGDAW
+  gBR5OsTL51PMQOR0qWtl1tHx4OHGxjANBgkqhkiG9w0BAQsFAAOCAQEAUGcnb2BR
+  LGAofxfA68gXb+NQ6hwuISHdaiGdeJ+FxEPv1ma5nBj77wC9Ik+kNrRIZncQclTX
+  ig7LPsMRGTwRquUpoRD6Pgy4Y2HKKpFBdF0m0ns9s9lujpuabMn9hTata9iyjRgJ
+  RzGKB7jtYjsDfnQIUPPQzVjdMvBbvWhKgWAUOgOAbOMLP8OHuRVkPDSHj6E2TkWW
+  hmiGmTyXls7s/PAVKqKdGYFzP0zmLZcWFNyt8Im6YwwtvjoWUs8QiknloLW3L6ZA
+  JDlEW+b759bfMV2b9Mm+cTeQDVt4yb/JWkni3wRJu0RaCWLVxjz4cysntpHJOVZs
+  DSP0T30MFNpjcw==
+  -----END CERTIFICATE-----
+
+# Optional # PEM-encoded bytes of client (the autoscaler service) pki key
+# ClusterAutoscaleServiceKeyData takes precedence over ClusterAutoscaleServiceKeyFile
+ClusterAutoscaleServiceKeyData: |
+  -----BEGIN PRIVATE KEY-----
+  MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDAd2mFChWxWl71
+  tfwFcMOkGD+fs/r+t2PWKa7HeBXxazprFS2pwOdkY9k+AuiRCZH7eO0sYA+L3kN/
+  yMlT1PZILYZveHP4vJt2qb5cwEFFKRw0UvseYq6nsM0xO2iKBkwl1Hg0arl76l76
+  k4W7qAuv6WeIdVweZ4Mb5ezH5H1cUb3d4haUWyw6fJWPTrO80HRQaF8wYzpQ7Nry
+  ZLB2LMoYZ86Nqr5lmrloyPjweNwr77/23lXowIFcEnSRv7ivnOSqrce3Ns25CeMT
+  vdrt9I33I2I48huAnfZ3pCLEp9IPAkBruI4c/s3ssdzDfi8W5i1Kw8fWmdPvpQ7I
+  EmgmeGmlAgMBAAECggEADwajlc/iPqzkAgHZsaEKnRqJiRHXlCBEKpmpfAgrimQJ
+  NQf7vyeAyS0kbjty5bPeEkhwF8lOHWjWUzkdQq67JYpsVvKL90zeREbfRkV6MwiR
+  G6Ko2UfyA8SBWIkfUbtJIaDzW4BDh+GV1bFDvRFTDEJII3aqIPOK4Fg0gqybfuP+
+  DFw56rl60sBAOYj67MIgH1Zdf+IEMdnHbEy+Btul/iQC2U6hihD/8AWZ+ySgDS/K
+  wpvYuYGcRZQee1E9IsDkv8vtz6sgakAq9datWH4bTO4CX/mJBfu1Rr27fQp7Elm1
+  sydv92heRVltihXfDg5HOEtjgCWCrq/WaEMPI0t80QKBgQDxBUNmpsCVqwUC0eBH
+  qOFIKVPv9e8JP2X2h812dCqvr7mr6CV6Q3AEJqYy96HRGXkLDx76WA/5eqzAwT5I
+  uc8buXExzLJxaAv+52uMYiABq1aA0GON50/Bi99dAsK1oS8PPsJoOJMGKLOSbc8X
+  uHdpwsGvo/0kJm1nkpTs5ZjATQKBgQDMbaIM+B3AGi7mVTMonq01VfZlqM2y8FsG
+  CRDX6ShPzlMS2EgBxzpLIny8E/puxlHIuUkPZT49HrHTkHnPOcYaw4WBTA/Tp3Jc
+  QUECwsuTxj5Xw9+vBVFYjEC+6f+5PqDuIvkLQb46TtpySU4RZLhmfTIDNONX8Osl
+  ak2Nv5Q6uQKBgG436/S7eQJ4rNf3Rks+7ZbkX2Ay5VcjSOuOeuUahpLFF3GHvevF
+  fypGymYwXC2VKodmKNJvBw8djHaxaFw1rIKPMTaG12uJG0M8bTBLhzt8MRjDM2On
+  Tg/CeSi9pHEO/shH+PtUM9fzMPtbgALm9qTEzXIW2iJ3+DwPCk+zR0FZAoGAeFqz
+  ZV9OZKMFqaXPkMKaxyPtBLz1HbxUWqFLwVIL4bBfSGD9Q86/iyyqszAv6LfpvnsX
+  gHDiy6kemKgejto8v9UM7KqTRtD2i0n/tFhq8n1shs9TCf/ffHpWRBAP9kfhB1Kf
+  vPjfvgRep5pw09ywk+ZxY2Hn1waH6mdDcYixBEECgYEAqnhzWvV0krR4oJelUrEs
+  1TWVDa4ogG4SsDxMJ6AdaH27apmY5384R0Z88meqVxkgpnbcfe/9VombscQDxaWj
+  HbFr+UXerplG6gNB+Ux96rukSzBZ7nBf2DEI0O1QD/tv+ViL4F8+7XwhxLlntqg6
+  tNZ1xOH1rjtmXsn9bGn/mTI=
+  -----END PRIVATE KEY-----
+
+# Optional # PEM-encoded bytes of a Certificate Authority root of trust for the rancher server
+# RancherServerCARoot takes precedence over RancherServerCARootFile
+RancherServerCARoot: |
+  -----BEGIN CERTIFICATE-----
+  MIIDpzCCAo+gAwIBAgIUeMtjRlgSq1b0tOIaGyrG2KLRF3EwDQYJKoZIhvcNAQEL
+  BQAwYzELMAkGA1UEBhMCVVMxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM
+  GEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTcmFuY2hlci5leGFt
+  cGxlLmNvbTAeFw0yNDA4MjYxNDQ2NDBaFw0yOTA4MjUxNDQ2NDBaMGMxCzAJBgNV
+  BAYTAlVTMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBX
+  aWRnaXRzIFB0eSBMdGQxHDAaBgNVBAMME3JhbmNoZXIuZXhhbXBsZS5jb20wggEi
+  MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDAORG2nt4Z9gSAsU8tX10PiDGO
+  t3+d82kG8T+enTFZLWNmlKHf0MxE7VfKdTVQr7gQMlHCjuc0PwtxjM4QfrO6DUXT
+  OzKTzbEDh1Vq7ZJa1/k0Ef9z/IV3mWEnSujWaIIsMslNoERthLgo8PkwJw0yaGhs
+  PhozFca8oXdZw3oAMfHZ5LCXe07oqKzi89/8sKFI8fXZArVSm9U3a52Vuuw3/Pua
+  KWW6b98hdFAOo50P37ERxnMpp0hFwrqasrzDYFikxUrhm+5PyOJCYj8ucBHTmsJg
+  NpIaHNkUelCgbCauNdkhZzq1ppoCSdRIS5BYBSz8SCHCqTpa5sTR366PFmWTAgMB
+  AAGjUzBRMB0GA1UdDgQWBBR5OsTL51PMQOR0qWtl1tHx4OHGxjAfBgNVHSMEGDAW
+  gBR5OsTL51PMQOR0qWtl1tHx4OHGxjAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3
+  DQEBCwUAA4IBAQC4q3kTJFgL4YsNGXc1amOmEe7CChao1jrIrUxnNFU2pLrHcs3z
+  aNLeLhgIlPOaGzWJrroMiWxHEfdDpc/N2Q9ZWoobv9nwjgmRBY2ADwd6+6KXR/Ap
+  ZoHy/Oef0I9NKOc/2KiJMy9CWNKDXjpen1CdNQigMilvz/NU1HNpKAjYy+9uJJsr
+  smDJiORT9ga75BondcCKfIg9QKscZx25O1kz1XFaCvZURwF/ga+xXErsfo/Iqhlb
+  b3p+GCwl1bafUhlqwfl4NkxuLzhTGK6zwfw24wq5RMwveO1buxC2kJMEd0t9bHcG
+  bEiZibUS6wQf/gneSt34vGiQy5Fqpz/5EdwV
+  -----END CERTIFICATE-----
+
+# Optional # NextProtos is a list of supported application level protocols, in order of preference.
+# Used to populate tls.Config.NextProtos.
+# To indicate to the server http/1.1 is preferred over http/2, set to ["http/1.1", "h2"] (though the server is free to ignore that preference).
+# To use only http/1.1, set to ["http/1.1"].
+NextProtos: ["h2", "http/1.1"]

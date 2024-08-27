@@ -1,0 +1,27 @@
+# cloudConfigPath -- Configuration file for cloud provider.
+cloudConfigPath: "./cloud-config/config.yaml"
+
+# cloudProvider -- The cloud provider where the autoscaler runs.
+cloudProvider: rancher
+
+# extraArgs -- Additional container arguments.
+# Refer to https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#what-are-the-parameters-to-ca for the full list of cluster autoscaler
+# parameters and their default values.
+# Everything after the first _ will be ignored allowing the use of multi-string arguments.
+# extraVolumeMounts -- Additional volumes to mount.
+extraVolumeMounts: 
+   # Optional # used for custom certificate authorities for the Rancher server
+   - name: ca-root-cert
+     mountPath: "./rancher-ca-root"
+     readOnly: true
+
+# extraVolumeSecrets -- Additional volumes to mount from Secrets.
+extraVolumeSecrets:
+  # Sets the rancher cloud provider configuration details
+  autoscaler-cloud-config:
+    mountPath: ./cloud-config/
+    name: autoscale-cloud-config
+  # Optional # used for client side TLS cert and key files for the autoscaler service
+  autoscaler-pki:
+    mountPath: "./custom-pki"
+    name: autoscaler-pki
